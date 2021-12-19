@@ -1,7 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { getAPI } from './apis/pvwatts';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import ResultsScreen from './screens/resultsScreen';
+import { AntDesign } from '@expo/vector-icons';
 
 let exampleParams = {
   'api_key': 'QRveUlC3ybb0cOKs6MviFSd6NvlJSufEk5VnJIJF',
@@ -20,12 +23,30 @@ let exampleParams = {
 
 getAPI(exampleParams)
 
+const Tab = createMaterialBottomTabNavigator();
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        activeColor="#fff"
+        inactiveColor="#aaa"
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color }) => {
+            let iconName;
+            if (route.name === 'New estimate') {
+              iconName = focused ? 'addfile' : 'addfile'; // Could use a different icon or colour when not in focus
+            } else if (route.name === 'Old estimates') {
+              iconName = focused ? 'folder1' : 'folder1';
+            }
+            return <AntDesign name={iconName} size={24} color={color} />
+          },
+        })}
+      >
+        <Tab.Screen name="New estimate" component={ResultsScreen} />
+        <Tab.Screen name="Old estimates" component={ResultsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
