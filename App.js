@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { getAPI } from './apis/pvwatts';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import ResultsScreen from './screens/resultsScreen';
+import ResultsScreen from './screens/ResultsScreen';
 import { AntDesign } from '@expo/vector-icons';
+import InputProgressScreen from './screens/InputProgressScreen';
 
 let exampleParams = {
   'api_key': 'QRveUlC3ybb0cOKs6MviFSd6NvlJSufEk5VnJIJF',
@@ -21,7 +21,7 @@ let exampleParams = {
   'dataset': 'intl'
 }
 
-getAPI(exampleParams)
+//getAPI(exampleParams)
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -43,18 +43,9 @@ export default function App() {
           },
         })}
       >
-        <Tab.Screen name="New estimate" component={ResultsScreen} />
+        <Tab.Screen name="New estimate" component={InputProgressScreen} />
         <Tab.Screen name="Old estimates" component={ResultsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
