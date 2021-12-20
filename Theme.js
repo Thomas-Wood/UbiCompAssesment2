@@ -81,6 +81,15 @@ export default {
     inputLabelText: {
         color: colours.buttonText,
         fontSize: 30,
-        paddingBottom: 10,
+        paddingBottom: 5,
     },
+    inputInfoIcon: {
+        position: 'absolute',
+        left: '60%'
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 }

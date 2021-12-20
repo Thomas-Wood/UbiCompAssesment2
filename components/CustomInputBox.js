@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import { AntDesign } from '@expo/vector-icons';
 import Theme from "../Theme";
 
 const CustomInputBox = ({label, defaultValue, prefix, numeric, stateChangeFunction, onPress}) => {
@@ -11,9 +12,16 @@ const CustomInputBox = ({label, defaultValue, prefix, numeric, stateChangeFuncti
   }
 
   return (
-    <TouchableOpacity style={Theme.inputBox} onPress={ () => onPress() }>
-      <Text style={Theme.inputLabelText}>{label}</Text>
-      <View style={{flexDirection: 'row'}}>
+    <View style={Theme.inputBox}>
+      <View style={Theme.row}>
+        <Text style={Theme.inputLabelText}>{label}</Text>
+        <View style={Theme.inputInfoIcon}>
+          <TouchableOpacity onPress={onPress}>
+            <AntDesign name="infocirlceo" size={24} color="white" />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={Theme.row}>
         <Text style={Theme.inputPrefixText}>{prefix}</Text>
         <TextInput
           style={Theme.inputText}
@@ -22,7 +30,7 @@ const CustomInputBox = ({label, defaultValue, prefix, numeric, stateChangeFuncti
           keyboardType={keyboardType}
         />
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
