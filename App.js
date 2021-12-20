@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import ResultsScreen from './screens/ResultsScreen';
 import { AntDesign } from '@expo/vector-icons';
 import InputProgressScreen from './screens/InputProgressScreen';
+import Theme from "./Theme";
 
 let exampleParams = {
   'api_key': 'QRveUlC3ybb0cOKs6MviFSd6NvlJSufEk5VnJIJF',
@@ -27,7 +28,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={Theme.navigationTheme}>
       <Tab.Navigator
         activeColor="#fff"
         inactiveColor="#aaa"
