@@ -3,18 +3,18 @@ import { Text, View } from "react-native";
 import CustomButton from "../components/CustomButton";
 import Theme from "../Theme";
 
-const LocationSelectionScreen = ({navigation, route}) => {
+const ElectricitySelectionScreen = ({navigation, route}) => {
 
-  let changeLocationState = route.params.changeLocationState
+  let changeElectricityState = route.params.changeElectricityState
 
   const submitFunction = () => {
-    changeLocationState(true)
+    changeElectricityState(true)
     navigation.navigate('ProgressScreen')
   }
 
   return (
     <View style={Theme.container}>
-      <Text>Please select your location</Text>
+      <Text>Please select your electricity details</Text>
 
       {/* <CustomInputBox
         label={"Panel cost"}
@@ -34,4 +34,4 @@ const LocationSelectionScreen = ({navigation, route}) => {
   );
 };
 
-export default LocationSelectionScreen;
+export default ElectricitySelectionScreen;

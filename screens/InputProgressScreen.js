@@ -6,26 +6,28 @@ import Theme from "../Theme";
 
 const InputProgressScreen = ({navigation, route}) => {
 
-  const [locationState, changeLocationState] = route.params.locationStateData
-  const [solarState, changesolarState] = route.params.solarStateData
-  const [electricityState, changeelectricityState] = route.params.electricityStateData
+  const [locationState, changeLocationState] = React.useState(false);
+  const [solarState, changeSolarState] = React.useState(false);
+  const [electricityState, changeElectricityState] = React.useState(false);
+
+  console.log("Progress screen thinks location is " + locationState)
 
   return (
     <View style={Theme.container}>
       <Text style={Theme.heading}>Complete each section to get an estimate on solar power generation</Text>
       <CustomInputSectionButton
         text={'Location'} 
-        onPress={ () => navigation.push('Location')}
+        onPress={ () => navigation.push('Location', {changeLocationState: changeLocationState})}
         complete={locationState}
       />
       <CustomInputSectionButton
         text={'Solar Panel Details'} 
-        onPress={ () => console.log("Solar Button Pressed")}
+        onPress={ () => navigation.push('Solar', {changeSolarState: changeSolarState})}
         complete={solarState}
       />
       <CustomInputSectionButton
         text={'Electricity prices'} 
-        onPress={ () => console.log("Electricity Button Pressed")}
+        onPress={ () => navigation.push('Electricity', {changeElectricityState: changeElectricityState})}
         complete={electricityState}
       />
       <CustomButton 

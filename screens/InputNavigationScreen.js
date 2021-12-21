@@ -1,15 +1,18 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from "react";
+import ElectricitySelectionScreen from './ElectricitySelectionScreen';
 import InputProgressScreen from "./InputProgressScreen";
 import LocationSelectionScreen from './LocationSelectionScreen';
+import SolarSelectionScreen from './SolarSelectionScreen';
+import { LogBox } from 'react-native';
+
+// State persistence and deep linking are not required for this use case, so this warning can be safely ignored.
+// More information can be found: https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
+LogBox.ignoreLogs(['Non-serializable values were found in the navigation state',]);
 
 const Stack = createStackNavigator();
 
 const InputProgressNavigationScreen = ({navigation}) => {
-
-  const [locationState, changeLocationState] = React.useState(false);
-  const [solarState, changesolarState] = React.useState(false);
-  const [electricityState, changeelectricityState] = React.useState(false);
 
   return (
     <Stack.Navigator>
@@ -17,32 +20,18 @@ const InputProgressNavigationScreen = ({navigation}) => {
           name="ProgressScreen"
           component={InputProgressScreen}
           options={{ headerShown: false }}
-          initialParams={{
-            locationStateData: [locationState, changeLocationState],
-            solarStateData: [solarState, changesolarState],
-            electricityStateData: [electricityState, changeelectricityState]
-          }}
       />
       <Stack.Screen
           name="Location"
           component={LocationSelectionScreen}
-          initialParams={{
-            locationStateData: [locationState, changeLocationState]
-          }}
       />
       <Stack.Screen
           name="Solar"
-          component={InputProgressScreen}
-          initialParams={{
-            solarStateData: [solarState, changesolarState]
-          }}
+          component={SolarSelectionScreen}
       />
       <Stack.Screen
           name="Electricity"
-          component={InputProgressScreen}
-          initialParams={{
-            electricityStateData: [electricityState, changeelectricityState]
-          }}
+          component={ElectricitySelectionScreen}
       />
     </Stack.Navigator>
   );
