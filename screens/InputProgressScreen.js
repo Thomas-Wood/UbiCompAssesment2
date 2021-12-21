@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import CustomButton from "../components/CustomButton";
 import CustomInputBox from "../components/CustomInputBox";
+import CustomInputSectionButton from "../components/CustomInputSectionButton";
 import Theme from "../Theme";
 
 const InputProgressScreen = ({navigation}) => {
@@ -20,10 +21,19 @@ const InputProgressScreen = ({navigation}) => {
         defaultValue={'100'} 
         numeric={true} 
         stateChangeFunction={onChangeNumber} 
-        onPress={ () => console.log('Some info on this input and what it means!')}>
-      </CustomInputBox>
+        onPress={ () => console.log('Some info on this input and what it means!')}
+      />
 
-      <CustomButton text={"Submit"} onPress={ () => console.log("Submit Button Pressed")}/>
+      <CustomButton 
+        text={"Submit"} 
+        onPress={ () => console.log("Submit Button Pressed")}
+      />
+
+      <CustomInputSectionButton
+        text={'Solar Panel Details'} 
+        onPress={ () => console.log("Solar Button Pressed")}
+        complete={true}
+      />
 
     </View>
   );

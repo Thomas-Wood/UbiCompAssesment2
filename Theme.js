@@ -91,5 +91,18 @@ export default {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    sectionButton: {
+        backgroundColor: colours.button,
+        margin: 20,
+        borderRadius: 20,
+        elevation: 10,
+        padding: 10,
+        width: screen.width*0.95,
+    },
+    sectionTickIcon: {
+        position: 'absolute',
+        left: '95%',
+        top: '45%'
+    },
 }
