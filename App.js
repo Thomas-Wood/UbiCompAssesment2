@@ -4,7 +4,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { NavigationContainer } from '@react-navigation/native';
 import ResultsScreen from './screens/ResultsScreen';
 import { AntDesign } from '@expo/vector-icons';
-import InputProgressScreen from './screens/InputProgressScreen';
+import InputNavigationScreen from './screens/InputNavigationScreen';
 import Theme from "./Theme";
 
 let exampleParams = {
@@ -44,7 +44,7 @@ export default function App() {
           },
         })}
       >
-        <Tab.Screen name="New estimate" component={InputProgressScreen} />
+        <Tab.Screen name="New estimate" component={InputNavigationScreen} />
         <Tab.Screen name="Old estimates" component={ResultsScreen} />
       </Tab.Navigator>
     </NavigationContainer>

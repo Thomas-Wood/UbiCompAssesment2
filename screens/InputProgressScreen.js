@@ -1,40 +1,37 @@
 import React from "react";
 import { Text, View } from "react-native";
 import CustomButton from "../components/CustomButton";
-import CustomInputBox from "../components/CustomInputBox";
 import CustomInputSectionButton from "../components/CustomInputSectionButton";
 import Theme from "../Theme";
 
-const InputProgressScreen = ({navigation}) => {
+const InputProgressScreen = ({navigation, route}) => {
 
-  const [text, onChangeText] = React.useState("Useless Text");
-  const [number, onChangeNumber] = React.useState(null);
+  const [locationState, changeLocationState] = route.params.locationStateData
+  const [solarState, changesolarState] = route.params.solarStateData
+  const [electricityState, changeelectricityState] = route.params.electricityStateData
 
   return (
     <View style={Theme.container}>
-
-      <Text>Tap a label to see more information about it</Text>
-
-      <CustomInputBox
-        label={"Panel cost"}
-        prefix={'£'} 
-        defaultValue={'100'} 
-        numeric={true} 
-        stateChangeFunction={onChangeNumber} 
-        onPress={ () => console.log('Some info on this input and what it means!')}
+      <Text style={Theme.heading}>Complete each section to get an estimate on solar power generation</Text>
+      <CustomInputSectionButton
+        text={'Location'} 
+        onPress={ () => navigation.push('Location')}
+        complete={locationState}
       />
-
+      <CustomInputSectionButton
+        text={'Solar Panel Details'} 
+        onPress={ () => console.log("Solar Button Pressed")}
+        complete={solarState}
+      />
+      <CustomInputSectionButton
+        text={'Electricity prices'} 
+        onPress={ () => console.log("Electricity Button Pressed")}
+        complete={electricityState}
+      />
       <CustomButton 
         text={"Submit"} 
         onPress={ () => console.log("Submit Button Pressed")}
       />
-
-      <CustomInputSectionButton
-        text={'Solar Panel Details'} 
-        onPress={ () => console.log("Solar Button Pressed")}
-        complete={true}
-      />
-
     </View>
   );
 };

@@ -18,7 +18,7 @@ const NavigationTheme = {
     colors: {
       primary: colours.primary,
       background: colours.background,
-      card: colours.card,
+      card: colours.primary,
       text: colours.buttonText,
       border: 'rgb(199, 199, 204)',
       notification: 'rgb(255, 69, 58)',
@@ -94,7 +94,7 @@ export default {
     },
     sectionButton: {
         backgroundColor: colours.button,
-        margin: 20,
+        margin: 10,
         borderRadius: 20,
         elevation: 10,
         padding: 10,
@@ -105,4 +105,9 @@ export default {
         left: '95%',
         top: '45%'
     },
+    heading: {
+        textAlign: 'center',
+        margin: 10,
+        fontSize: 18,
+    }
 }
