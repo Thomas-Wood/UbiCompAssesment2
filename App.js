@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAPI } from './apis/pvwatts';
+import { getAPI } from './tools/pvwatts';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import ResultsScreen from './screens/ResultsScreen';

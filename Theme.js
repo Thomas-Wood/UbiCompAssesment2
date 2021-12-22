@@ -68,24 +68,25 @@ export default {
     inputText: {
         backgroundColor: colours.background,
         height: 50,
-        width: '85%',
+        width: '75%',
         padding: 10,
         borderRadius: 10,
         marginLeft: 10
     },
     inputPrefixText: {
         color: colours.buttonText,
-        fontSize: 30,
+        fontSize: 20,
         padding: 5,
     },
     inputLabelText: {
         color: colours.buttonText,
-        fontSize: 30,
+        fontSize: 25,
         paddingBottom: 5,
     },
     inputInfoIcon: {
         position: 'absolute',
-        left: '60%'
+        left: '95%',
+        top: '20%'
     },
     row: {
         flexDirection: 'row',

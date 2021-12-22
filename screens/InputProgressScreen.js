@@ -10,8 +10,6 @@ const InputProgressScreen = ({navigation, route}) => {
   const [solarState, changeSolarState] = React.useState(false);
   const [electricityState, changeElectricityState] = React.useState(false);
 
-  console.log("Progress screen thinks location is " + locationState)
-
   return (
     <View style={Theme.container}>
       <Text style={Theme.heading}>Complete each section to get an estimate on solar power generation</Text>

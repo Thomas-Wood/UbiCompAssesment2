@@ -13,13 +13,11 @@ const CustomInputBox = ({label, defaultValue, prefix, numeric, stateChangeFuncti
 
   return (
     <View style={Theme.inputBox}>
-      <View style={Theme.row}>
-        <Text style={Theme.inputLabelText}>{label}</Text>
-        <View style={Theme.inputInfoIcon}>
-          <TouchableOpacity onPress={onPress}>
-            <AntDesign name="infocirlceo" size={24} color="white" />
-          </TouchableOpacity>
-        </View>
+      <Text style={Theme.inputLabelText}>{label}</Text>
+      <View style={Theme.inputInfoIcon}>
+        <TouchableOpacity onPress={onPress}>
+          <AntDesign name="infocirlceo" size={24} color="white" />
+        </TouchableOpacity>
       </View>
       <View style={Theme.row}>
         <Text style={Theme.inputPrefixText}>{prefix}</Text>
