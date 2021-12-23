@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import CustomButton from "../components/CustomButton";
 import CustomInputBox from "../components/CustomInputBox";
 import Theme from "../Theme";
@@ -39,33 +40,35 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
   }
 
   return (
-    <View style={Theme.container}>
-      <Text style={Theme.heading}>These details will help calculate how much money you could save</Text>
+    <ScrollView>
+      <View style={Theme.container}>
+        <Text style={Theme.heading}>These details will help calculate how much money you could save</Text>
 
-      <CustomInputBox
-        label={"Your Electricity Rate"}
-        prefix={'p/KWh'} 
-        defaultValue={electricRate} 
-        numeric={true} 
-        stateChangeFunction={onChangeElectricRate} 
-        onPress={ () => console.log('Some info on this input and what it means!')}
-      />
+        <CustomInputBox
+          label={"Your Electricity Rate"}
+          prefix={'p/KWh'} 
+          defaultValue={electricRate} 
+          numeric={true} 
+          stateChangeFunction={onChangeElectricRate} 
+          onPress={ () => console.log('Some info on this input and what it means!')}
+        />
 
-      <CustomInputBox
-        label={"Your Export Rate"}
-        prefix={'p/KWh'} 
-        defaultValue={exportRate}
-        numeric={true} 
-        stateChangeFunction={onChangeExportRate} 
-        onPress={ () => console.log('Some info on this input and what it means!')}
-      />
+        <CustomInputBox
+          label={"Your Export Rate"}
+          prefix={'p/KWh'} 
+          defaultValue={exportRate}
+          numeric={true} 
+          stateChangeFunction={onChangeExportRate} 
+          onPress={ () => console.log('Some info on this input and what it means!')}
+        />
 
-      <CustomButton 
-        text={"Submit"} 
-        onPress={submitFunction}
-      />
+        <CustomButton 
+          text={"Submit"} 
+          onPress={submitFunction}
+        />
 
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
