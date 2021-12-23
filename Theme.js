@@ -86,7 +86,7 @@ export default {
     inputInfoIcon: {
         position: 'absolute',
         left: '95%',
-        top: '20%'
+        top: 15,
     },
     row: {
         flexDirection: 'row',
@@ -110,5 +110,31 @@ export default {
         textAlign: 'center',
         margin: 10,
         fontSize: 18,
-    }
+    },
+    multipleChoiceText: {
+        color: colours.buttonText,
+        fontSize: 20,
+        padding: 5,
+    },
+    multipleChoiceRow: {
+        flexDirection: 'row',
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: 'rgba(255, 255, 255, 0.5)',
+        margin: 5
+    },
+    multipleChoiceInputBox: {
+        backgroundColor: colours.button,
+        justifyContent: 'center',
+        margin: 20,
+        borderRadius: 20,
+        elevation: 10,
+        padding: 10,
+        width: screen.width*0.95,
+    },
+    multipleChoiceTickIcon: {
+        position: 'absolute',
+        left: '90%',
+        top: 6
+    },
 }
