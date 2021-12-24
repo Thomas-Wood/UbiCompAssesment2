@@ -10,12 +10,9 @@ const LocationSelectionScreen = ({navigation, route}) => {
 
   let changeLocationState = route.params.changeLocationState
 
-  let [location, setLocation] = React.useState(null);
+  let [currentLat, setLat] = React.useState(null);
+  let [currentLong, setLong] = React.useState(null);
   let [errorMsg, setErrorMsg] = React.useState(null);
-
-  let currentLat = 0
-  let currentLong = 0
-  let text = 'Waiting for permissions';
 
   const getCurrentLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -25,22 +22,25 @@ const LocationSelectionScreen = ({navigation, route}) => {
     }
 
     let newLocation = await Location.getCurrentPositionAsync({});
-    setLocation(newLocation);
 
+    let text = 'Waiting for permissions';
     if (errorMsg) {
       text = errorMsg;
-    } else if (location) {
-      text = JSON.stringify(location);
-      currentLat = location.coords.latitude
-      currentLong = location.coords.longitude
+    } else if (newLocation) {
+      text = JSON.stringify(newLocation);
+      setLat(newLocation.coords.latitude)
+      setLong(newLocation.coords.longitude)
     }
-  
-    console.log("Lat: " + currentLat + " Long: " + currentLong)
   }
 
   const submitFunction = () => {
     changeLocationState(true)
     navigation.navigate('ProgressScreen')
+  }
+
+  const onMapPress = (event) => {
+    setLat(event.nativeEvent.coordinate.latitude)
+    setLong(event.nativeEvent.coordinate.longitude)
   }
 
   return (
@@ -59,13 +59,17 @@ const LocationSelectionScreen = ({navigation, route}) => {
       </View>
 
       <MapView
-          style={{height: '50%', width: '100%'}}
-          initialRegion={{
-            latitude: 50.742845,
-            longitude: -1.897201,
-            latitudeDelta: 0.09,
-            longitudeDelta: 0.09,
-          }}>
+        style={{height: '50%', width: '100%'}}
+        initialRegion={{
+          latitude: 50.742845,
+          longitude: -1.897201,
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.09,
+        }}
+        onPress={onMapPress}>
+        <Marker
+        coordinate={{latitude: currentLat, longitude: currentLong}}
+      />
       </MapView>
 
       <View style={{height: '20%', width: '100%'}}>
