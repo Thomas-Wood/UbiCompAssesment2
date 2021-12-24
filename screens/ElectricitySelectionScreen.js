@@ -17,8 +17,8 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
     async function getValues() {
       let currentEstimate = await getObject('currentEstimate')
       if (currentEstimate != null) {
-        onChangeElectricRate(currentEstimate['electricRate'])
-        onChangeExportRate(currentEstimate['exportRate'])
+        (currentEstimate['electricRate'] != null) ? onChangeElectricRate(currentEstimate['electricRate']) : null;
+        (currentEstimate['exportRate'] != null) ? onChangeExportRate(currentEstimate['exportRate']) : null;
       }
     }
     return getValues()

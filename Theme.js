@@ -59,7 +59,7 @@ export default {
         backgroundColor: colours.button,
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 20,
+        margin: 10,
         borderRadius: 20,
         elevation: 10,
         padding: 10,
@@ -126,7 +126,7 @@ export default {
     multipleChoiceInputBox: {
         backgroundColor: colours.button,
         justifyContent: 'center',
-        margin: 20,
+        margin: 10,
         borderRadius: 20,
         elevation: 10,
         padding: 10,
