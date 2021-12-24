@@ -83,7 +83,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
   return (
     <ScrollView>
       <View style={Theme.container}>
-        <Text style={Theme.heading}>Please select your solar details</Text>
+        <Text style={Theme.heading}>These details help determin how much power your panels could produce</Text>
 
         <CustomMultipleChoice
           label={'Module Type'}
