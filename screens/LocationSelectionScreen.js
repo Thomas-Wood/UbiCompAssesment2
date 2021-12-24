@@ -4,10 +4,39 @@ import CustomButton from "../components/CustomButton";
 import Theme from "../Theme";
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+import * as Location from 'expo-location';
 
 const LocationSelectionScreen = ({navigation, route}) => {
 
   let changeLocationState = route.params.changeLocationState
+
+  let [location, setLocation] = React.useState(null);
+  let [errorMsg, setErrorMsg] = React.useState(null);
+
+  let currentLat = 0
+  let currentLong = 0
+  let text = 'Waiting for permissions';
+
+  const getCurrentLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
+      return;
+    }
+
+    let newLocation = await Location.getCurrentPositionAsync({});
+    setLocation(newLocation);
+
+    if (errorMsg) {
+      text = errorMsg;
+    } else if (location) {
+      text = JSON.stringify(location);
+      currentLat = location.coords.latitude
+      currentLong = location.coords.longitude
+    }
+  
+    console.log("Lat: " + currentLat + " Long: " + currentLong)
+  }
 
   const submitFunction = () => {
     changeLocationState(true)
@@ -22,7 +51,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
 
           <CustomButton 
             text={"Use Current GPS"} 
-            onPress={() => {console.log("Getting current location")}}
+            onPress={getCurrentLocation}
           />
 
 
