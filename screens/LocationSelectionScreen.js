@@ -43,6 +43,46 @@ const LocationSelectionScreen = ({navigation, route}) => {
     setLong(event.nativeEvent.coordinate.longitude)
   }
 
+  const getMarker = () => {
+    if (currentLat != null && currentLong != null) {
+      return (<Marker coordinate={{latitude: currentLat, longitude: currentLong}}/>)
+    } else {
+      return null
+    }
+  }
+
+  const getMap = () => {
+    if (currentLat != null && currentLong != null) {
+      return (
+        <MapView
+        style={{height: '50%', width: '100%'}}
+        region={{
+          latitude: currentLat,
+          longitude: currentLong,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
+        }}
+        onPress={onMapPress}>
+        {getMarker()}
+      </MapView>
+      )
+    } else {
+      return (
+        <MapView
+        style={{height: '50%', width: '100%'}}
+        initialRegion={{
+          latitude: 50.742845,
+          longitude: -1.897201,
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.09,
+        }}
+        onPress={onMapPress}>
+        {getMarker()}
+      </MapView>
+      )
+    }
+  }
+
   return (
     <View>
       <View style={{height: '30%', width: '100%'}}>
@@ -58,19 +98,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
         </View>
       </View>
 
-      <MapView
-        style={{height: '50%', width: '100%'}}
-        initialRegion={{
-          latitude: 50.742845,
-          longitude: -1.897201,
-          latitudeDelta: 0.09,
-          longitudeDelta: 0.09,
-        }}
-        onPress={onMapPress}>
-        <Marker
-        coordinate={{latitude: currentLat, longitude: currentLong}}
-      />
-      </MapView>
+      {getMap()}
 
       <View style={{height: '20%', width: '100%'}}>
         <View style={Theme.container}>
