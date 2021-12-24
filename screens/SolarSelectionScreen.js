@@ -12,6 +12,8 @@ const SolarSelectionScreen = ({navigation, route}) => {
   let changeSolarState = route.params.changeSolarState
 
   let [moduleType, onChangeModuleType] = React.useState(0)
+  let [arrayArea, onChangeArrayArea] = React.useState('4')
+  let [panelRating, onChangePanelRating] = React.useState('1')
   let [arrayType, onChangeArrayType] = React.useState(1)
   let [tilt, onChangeTilt] = React.useState('30')
   let [azimuth, onChangeAzimuth] = React.useState('180')
@@ -21,9 +23,11 @@ const SolarSelectionScreen = ({navigation, route}) => {
       let currentEstimate = await getObject('currentEstimate')
       if (currentEstimate != null) {
         (currentEstimate['moduleType'] != null) ? onChangeModuleType(parseInt(currentEstimate['moduleType'])) : null;
+        (currentEstimate['arrayArea'] != null) ? onChangeArrayArea(currentEstimate['arrayArea']) : null;
+        (currentEstimate['panelRating'] != null) ? onChangePanelRating(currentEstimate['panelRating']) : null;
         (currentEstimate['arrayType'] != null) ? onChangeArrayType(parseInt(currentEstimate['arrayType'])) : null;
-        (currentEstimate['tilt'] != null) ? onChangeTilt(parseInt(currentEstimate['tilt'])) : null;
-        (currentEstimate['azimuth'] != null) ? onChangeAzimuth(parseInt(currentEstimate['azimuth'])) : null;
+        (currentEstimate['tilt'] != null) ? onChangeTilt(currentEstimate['tilt']) : null;
+        (currentEstimate['azimuth'] != null) ? onChangeAzimuth(currentEstimate['azimuth']) : null;
       }
     }
     return getValues()
@@ -37,6 +41,8 @@ const SolarSelectionScreen = ({navigation, route}) => {
       currentEstimate = {}
     }
     currentEstimate['moduleType'] = moduleType
+    currentEstimate['arrayArea'] = arrayArea
+    currentEstimate['panelRating'] = panelRating
     currentEstimate['arrayType'] = arrayType
     currentEstimate['tilt'] = tilt
     currentEstimate['azimuth'] = azimuth
@@ -85,6 +91,24 @@ const SolarSelectionScreen = ({navigation, route}) => {
           currentState={moduleType}
           stateChangeFunction={onChangeModuleType}
           onPress={() => console.log('This describes what each module name means')}
+        />
+
+        <CustomInputBox
+          label={"Array Area"}
+          prefix={'m²'} 
+          defaultValue={arrayArea} 
+          numeric={true} 
+          stateChangeFunction={onChangeArrayArea}
+          onPress={ () => console.log('Some info on this input and what it means!')}
+        />
+
+        <CustomInputBox
+          label={"Panel Rating"}
+          prefix={'kW/m²'} 
+          defaultValue={panelRating} 
+          numeric={true} 
+          stateChangeFunction={onChangePanelRating}
+          onPress={ () => console.log('Some info on this input and what it means!')}
         />
 
         <CustomMultipleChoice
