@@ -5,6 +5,7 @@ import Theme from "../Theme";
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
+import { getObject, storeObject } from "../tools/asyncStorageHelper";
 
 const LocationSelectionScreen = ({navigation, route}) => {
 
@@ -33,7 +34,15 @@ const LocationSelectionScreen = ({navigation, route}) => {
     }
   }
 
-  const submitFunction = () => {
+  const submitFunction = async () => {
+    var currentEstimate = await getObject('currentEstimate')
+    if (currentEstimate == null) {
+      currentEstimate = {}
+    }
+    currentEstimate['latitude'] = currentLat
+    currentEstimate['longitude'] = currentLong
+    await storeObject('currentEstimate', currentEstimate)
+
     changeLocationState(true)
     navigation.navigate('ProgressScreen')
   }
