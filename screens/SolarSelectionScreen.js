@@ -40,22 +40,29 @@ const SolarSelectionScreen = ({navigation, route}) => {
   }, [])
 
   const submitFunction = async () => {
-    // TODO Check inputs are valid
+    let arrayAreaValid = (arrayArea > 0.1)
+    let panelRatingValid = (panelRating > 0.1)
+    let tiltValid = (tilt >= 0 && tilt <= 90)
+    let azimuthValid = (azimuth >= 0 && azimuth <= 360)
 
-    var currentEstimate = await getObject('currentEstimate')
-    if (currentEstimate == null) {
-      currentEstimate = {}
+    if (arrayAreaValid && panelRatingValid && tiltValid && azimuthValid) {
+      var currentEstimate = await getObject('currentEstimate')
+      if (currentEstimate == null) {
+        currentEstimate = {}
+      }
+      currentEstimate['moduleType'] = moduleType
+      currentEstimate['arrayArea'] = arrayArea
+      currentEstimate['panelRating'] = panelRating
+      currentEstimate['arrayType'] = arrayType
+      currentEstimate['tilt'] = tilt
+      currentEstimate['azimuth'] = azimuth
+      await storeObject('currentEstimate', currentEstimate)
+
+      changeSolarState(true)
+      navigation.navigate('ProgressScreen')
+    } else {
+      showModal("Make sure your array area and panel rating is more than 0.1, tilt is between 0 and 90, and the angle from north is between 0 and 360.")
     }
-    currentEstimate['moduleType'] = moduleType
-    currentEstimate['arrayArea'] = arrayArea
-    currentEstimate['panelRating'] = panelRating
-    currentEstimate['arrayType'] = arrayType
-    currentEstimate['tilt'] = tilt
-    currentEstimate['azimuth'] = azimuth
-    await storeObject('currentEstimate', currentEstimate)
-
-    changeSolarState(true)
-    navigation.navigate('ProgressScreen')
   }
 
   const showModal = (content) => {

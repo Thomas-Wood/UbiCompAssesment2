@@ -29,7 +29,6 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
   }, [])
 
   const submitFunction = async () => {
-    // TODO Check inputs are valid
     let electricRatevalid = (electricRate > 0 && electricRate < 100)
     let exportRateValid = (exportRate >= 0 && exportRate < 100)
 

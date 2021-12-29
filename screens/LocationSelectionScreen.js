@@ -34,6 +34,17 @@ const LocationSelectionScreen = ({navigation, route}) => {
     }
   }
 
+  React.useEffect(() => {
+    async function getValues() {
+      let currentEstimate = await getObject('currentEstimate')
+      if (currentEstimate != null) {
+        (currentEstimate['latitude'] != null) ? setLat(parseFloat(currentEstimate['latitude'])) : null;
+        (currentEstimate['longitude'] != null) ? setLong(parseFloat(currentEstimate['longitude'])) : null;
+      }
+    }
+    return getValues()
+  }, [])
+
   const submitFunction = async () => {
     var currentEstimate = await getObject('currentEstimate')
     if (currentEstimate == null) {
@@ -82,8 +93,8 @@ const LocationSelectionScreen = ({navigation, route}) => {
         initialRegion={{
           latitude: 50.742845,
           longitude: -1.897201,
-          latitudeDelta: 0.09,
-          longitudeDelta: 0.09,
+          latitudeDelta: 8,
+          longitudeDelta: 8,
         }}
         onPress={onMapPress}>
         {getMarker()}
