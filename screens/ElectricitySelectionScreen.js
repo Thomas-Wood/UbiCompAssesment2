@@ -30,17 +30,23 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
 
   const submitFunction = async () => {
     // TODO Check inputs are valid
+    let electricRatevalid = (electricRate > 0 && electricRate < 100)
+    let exportRateValid = (exportRate >= 0 && exportRate < 100)
 
-    var currentEstimate = await getObject('currentEstimate')
-    if (currentEstimate == null) {
-      currentEstimate = {}
-    }
-    currentEstimate['electricRate'] = electricRate
-    currentEstimate['exportRate'] = exportRate
-    await storeObject('currentEstimate', currentEstimate)
+    if (electricRatevalid && exportRateValid) {
+      var currentEstimate = await getObject('currentEstimate')
+      if (currentEstimate == null) {
+        currentEstimate = {}
+      }
+      currentEstimate['electricRate'] = electricRate
+      currentEstimate['exportRate'] = exportRate
+      await storeObject('currentEstimate', currentEstimate)
 
-    changeElectricityState(true)
-    navigation.navigate('ProgressScreen')
+      changeElectricityState(true)
+      navigation.navigate('ProgressScreen')
+    } else {
+      showModal("Make sure your inputs are between 0 and 100")
+    }    
   }
 
   const showModal = (content) => {
@@ -65,7 +71,7 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
           defaultValue={electricRate} 
           numeric={true} 
           stateChangeFunction={onChangeElectricRate} 
-          onPress={ () => showModal("This is the rate you pay for your electricity. It's used to help calculate how much money you could save. £17.20 is an average value for the UK.")}
+          onPress={ () => showModal("This is the rate you pay for your electricity. It's used to help calculate how much money you could save. 17.2p is an average value for the UK.")}
         />
 
         <CustomInputBox
