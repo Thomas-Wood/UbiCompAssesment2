@@ -6,6 +6,7 @@ import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { getObject, storeObject } from "../tools/asyncStorageHelper";
+import CustomModal from "../components/CustomModal";
 
 const LocationSelectionScreen = ({navigation, route}) => {
 
@@ -14,6 +15,9 @@ const LocationSelectionScreen = ({navigation, route}) => {
   let [currentLat, setLat] = React.useState(null);
   let [currentLong, setLong] = React.useState(null);
   let [errorMsg, setErrorMsg] = React.useState(null);
+
+  let [modalVisible, setModalVisible] = React.useState(false);
+  let [modalContent, setModalContent] = React.useState("Placeholder Text");
 
   const getCurrentLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -46,16 +50,25 @@ const LocationSelectionScreen = ({navigation, route}) => {
   }, [])
 
   const submitFunction = async () => {
-    var currentEstimate = await getObject('currentEstimate')
-    if (currentEstimate == null) {
-      currentEstimate = {}
-    }
-    currentEstimate['latitude'] = currentLat
-    currentEstimate['longitude'] = currentLong
-    await storeObject('currentEstimate', currentEstimate)
+    if (currentLat != null && currentLong != null) {
+      var currentEstimate = await getObject('currentEstimate')
+      if (currentEstimate == null) {
+        currentEstimate = {}
+      }
+      currentEstimate['latitude'] = currentLat
+      currentEstimate['longitude'] = currentLong
+      await storeObject('currentEstimate', currentEstimate)
 
-    changeLocationState(true)
-    navigation.navigate('ProgressScreen')
+      changeLocationState(true)
+      navigation.navigate('ProgressScreen')
+    } else {
+      showModal("Please select a location on the map or using the GPS button")
+    }
+  }
+
+  const showModal = (content) => {
+    setModalContent(content)
+    setModalVisible(!modalVisible)
   }
 
   const onMapPress = (event) => {
@@ -105,6 +118,12 @@ const LocationSelectionScreen = ({navigation, route}) => {
 
   return (
     <View>
+
+      <CustomModal
+          content={modalContent}
+          visible={modalVisible}
+          changeVisibleFunction={setModalVisible}/>
+
       <View style={{height: '30%', width: '100%'}}>
         <View style={Theme.container}>
           <Text style={{...Theme.heading, paddingTop: 5, marginBottom: 0}}>This helps find how much sun light your panels could get. Use your current GPS or tap a location on the map</Text>
