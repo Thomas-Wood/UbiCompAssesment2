@@ -137,4 +137,22 @@ export default {
         left: '90%',
         top: 6
     },
+    modalContainerOuter: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    modalContainerInner: {
+        backgroundColor: colours.background,
+        padding: 5,
+        paddingTop: 20,
+        borderRadius: 20,
+        alignItems: "center",
+        elevation: 5,
+        width: '90%',
+    },
+    modalText: {
+        textAlign: "center",
+        fontSize: 20,
+    }
 }
