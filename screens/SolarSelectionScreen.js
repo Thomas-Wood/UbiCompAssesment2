@@ -6,6 +6,9 @@ import CustomMultipleChoice from "../components/CustomMultipleChoice";
 import CustomInputBox from "../components/CustomInputBox"
 import Theme from "../Theme";
 import { getObject, storeObject } from "../tools/asyncStorageHelper";
+import CustomModal from "../components/CustomModal";
+
+// Descriptions are based of the API's descriptions found here: https://pvwatts.nrel.gov/
 
 const SolarSelectionScreen = ({navigation, route}) => {
 
@@ -17,6 +20,9 @@ const SolarSelectionScreen = ({navigation, route}) => {
   let [arrayType, onChangeArrayType] = React.useState(1)
   let [tilt, onChangeTilt] = React.useState('30')
   let [azimuth, onChangeAzimuth] = React.useState('180')
+
+  let [modalVisible, setModalVisible] = React.useState(false);
+  let [modalContent, setModalContent] = React.useState("Placeholder Text");
 
   React.useEffect(() => {
     async function getValues() {
@@ -52,6 +58,11 @@ const SolarSelectionScreen = ({navigation, route}) => {
     navigation.navigate('ProgressScreen')
   }
 
+  const showModal = (content) => {
+    setModalContent(content)
+    setModalVisible(!modalVisible)
+  }
+
   const angleInputs = () => {
     if (arrayType == 0 || arrayType == 1 || arrayType == 2 || arrayType == 3) {
       return (
@@ -62,7 +73,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
             defaultValue={tilt} 
             numeric={true} 
             stateChangeFunction={onChangeTilt} 
-            onPress={ () => console.log('This is the angle from horizontal such at horizontal is 0 and vertical is 90.')}
+            onPress={ () => showModal('This is the angle from horizontal such that horizontal (flat roof) is 0 and vertical (wall mounted) is 90.')}
           />
 
           <CustomInputBox
@@ -71,7 +82,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
             defaultValue={azimuth} 
             numeric={true} 
             stateChangeFunction={onChangeAzimuth} 
-            onPress={ () => console.log('Some info on this input and what it means!')}
+            onPress={ () => showModal("This is the Azimuth, or the angle clockwise from true North. An azimuth angle of 180° is for a south-facing array, and an azimuth angle of zero degrees is for a north-facing array.")}
           />
         </View>
       )
@@ -83,6 +94,12 @@ const SolarSelectionScreen = ({navigation, route}) => {
   return (
     <ScrollView>
       <View style={Theme.container}>
+
+        <CustomModal
+          content={modalContent}
+          visible={modalVisible}
+          changeVisibleFunction={setModalVisible}/>
+
         <Text style={Theme.heading}>These details help determin how much power your panels could produce</Text>
 
         <CustomMultipleChoice
@@ -90,7 +107,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
           options={['Standard', 'Premium', 'Thin Film']}
           currentState={moduleType}
           stateChangeFunction={onChangeModuleType}
-          onPress={() => console.log('This describes what each module name means')}
+          onPress={() => showModal("The module type describes the photovoltaic modules in the array. If you do not have information about the modules in the system, use the default Standard module type.")}
         />
 
         <CustomInputBox
@@ -99,7 +116,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
           defaultValue={arrayArea} 
           numeric={true} 
           stateChangeFunction={onChangeArrayArea}
-          onPress={ () => console.log('Some info on this input and what it means!')}
+          onPress={ () => showModal("This is the total area of the solar panels in meters squared.")}
         />
 
         <CustomInputBox
@@ -108,15 +125,15 @@ const SolarSelectionScreen = ({navigation, route}) => {
           defaultValue={panelRating} 
           numeric={true} 
           stateChangeFunction={onChangePanelRating}
-          onPress={ () => console.log('Some info on this input and what it means!')}
+          onPress={ () => showModal("This is how much energy a 1m² panel can produce. 1KW is a common estimate.")}
         />
 
         <CustomMultipleChoice
           label={'Array Type'}
-          options={['Fixed - Open Rack', 'Fixed - Roof Mounted', '1-Axis tracking', '1-Axis Backtracking', '2-Axis tracking']}
+          options={['Fixed - Open Rack', 'Fixed - Roof Mounted', '1-Axis Tracking (Roll)', '1-Axis Tracking (Pitch)', '2-Axis Tracking']}
           currentState={arrayType}
           stateChangeFunction={onChangeArrayType}
-          onPress={() => console.log('This describes what each array type means')}
+          onPress={() => showModal("The array type describes whether the PV modules in the array are fixed, or whether they move to track the movement of the sun across the sky with one or two axes of rotation.")}
         />
 
         {angleInputs()}

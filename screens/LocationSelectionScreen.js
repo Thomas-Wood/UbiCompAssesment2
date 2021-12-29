@@ -96,7 +96,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
     <View>
       <View style={{height: '30%', width: '100%'}}>
         <View style={Theme.container}>
-          <Text style={Theme.heading}>This helps find how much sun light your panels could get. Use your current GPS or tap a location on the map</Text>
+          <Text style={{...Theme.heading, paddingTop: 5, marginBottom: 0}}>This helps find how much sun light your panels could get. Use your current GPS or tap a location on the map</Text>
 
           <CustomButton 
             text={"Use Current GPS"} 
