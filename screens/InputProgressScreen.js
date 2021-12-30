@@ -27,14 +27,31 @@ const InputProgressScreen = ({navigation, route}) => {
       
       let results = await getAPI(currentEstimate)
 
-      console.log("The results are in!")
-      console.log(results)
+      // Store new results and inputs
+      let detailsToSave = {
+        'estimate': currentEstimate,
+        'results': results
+      }
 
-      // TODO Store new results and inputs
+      var savedEstimates = await getObject('savedEstimates')
+      if (savedEstimates == null) {
+        savedEstimates = []
+      }
+      savedEstimates.push(detailsToSave)
+      await storeObject('savedEstimates', savedEstimates)
+
+      let index = savedEstimates.length -1
 
       // Wipe the 'currentEstimate' storage
+      await storeObject('currentEstimate', {})
+
+      changeLocationState(false)
+      changeSolarState(false)
+      changeElectricityState(false)
+
 
       // Load the results page with the new index
+      navigation.navigate('Saved estimates', { screen: 'ResultsScreen', params: { index: index }})
 
       setLoading(false)
     } else {
