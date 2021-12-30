@@ -33,11 +33,13 @@ export async function getAPI(currentEstimate) {
     let response = await fetch('https://developer.nrel.gov/api/pvwatts/v6.json?' + new URLSearchParams(params))
         .then(response => response.json())
 
-    // TODO Calculate electricity costs
+    let kwhGeneratedPerYear = response['outputs']['ac_annual']
+    let results = {
+        'kwhGeneratedPerYear': kwhGeneratedPerYear,
+        'minBenefit': parseFloat(kwhGeneratedPerYear) * parseFloat(currentEstimate['exportRate']),
+        'maxBenefit': parseFloat(kwhGeneratedPerYear) * parseFloat(currentEstimate['electricRate']),
+        'monthlyAC': response['outputs']['ac_monthly']
+    }
 
-    // TODO Simplify the data to what is needed
-
-    // TODO Rename function(s) from getAPI to something more appropriate
-
-    return response
+    return results
 }

@@ -22,13 +22,19 @@ const InputProgressScreen = ({navigation, route}) => {
   const submitFunction = async () => {
     if (locationState == true && solarState == true && electricityState == true) {
       setLoading(true)
-      
+
       let currentEstimate = await getObject('currentEstimate')
       
       let results = await getAPI(currentEstimate)
 
       console.log("The results are in!")
       console.log(results)
+
+      // TODO Store new results and inputs
+
+      // Wipe the 'currentEstimate' storage
+
+      // Load the results page with the new index
 
       setLoading(false)
     } else {
