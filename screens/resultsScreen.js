@@ -17,8 +17,6 @@ const ResultsScreen = ({navigation, route}) => {
     return getSavedEstimates()
   }, [])
 
-  console.log('Loading page with this data: ' + data['results']['kwhGeneratedPerYear'])
-
   return (
     <View style={Theme.container}>
       <Text>This will have the results for an estimate stored a index {index}</Text>

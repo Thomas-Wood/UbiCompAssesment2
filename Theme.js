@@ -154,5 +154,18 @@ export default {
     modalText: {
         textAlign: "center",
         fontSize: 20,
-    }
+    },
+    listItemBox: {
+        backgroundColor: colours.button,
+        margin: 10,
+        borderRadius: 10,
+        elevation: 10,
+        padding: 10,
+        width: '95%',
+    },
+    listText: {
+        textAlign: "center",
+        fontSize: 20,
+        color: colours.background,
+    },
 }

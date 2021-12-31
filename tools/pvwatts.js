@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export async function getAPI(currentEstimate) {
     // Full details on the request can be found on the NREL developers site: https://developer.nrel.gov/docs/solar/pvwatts/v6/#request-url
 
@@ -35,6 +37,7 @@ export async function getAPI(currentEstimate) {
 
     let kwhGeneratedPerYear = response['outputs']['ac_annual']
     let results = {
+        'dateTime': moment().format(),
         'kwhGeneratedPerYear': kwhGeneratedPerYear,
         'minBenefit': parseFloat(kwhGeneratedPerYear) * parseFloat(currentEstimate['exportRate']),
         'maxBenefit': parseFloat(kwhGeneratedPerYear) * parseFloat(currentEstimate['electricRate']),
