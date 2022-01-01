@@ -10,9 +10,11 @@ const CustomList = ({data, onPress}) => {
     return (
       <View style={Theme.listItemBox}>
         <TouchableOpacity onPress={() => onPress(index)}>
-          <Text style={Theme.listText}>{item['estimate']['arrayArea']} m² array</Text>
-          <Text style={Theme.listText}>{parseFloat(item['results']['kwhGeneratedPerYear']).toFixed(1)} KWh per year</Text>
-          <Text style={Theme.listText}>{moment(item['results']['dateTime']).fromNow()}</Text>
+          <View style={{flexDirection: 'row', justifyContent: "center"}}>
+            <Text style={Theme.listText}>{item['estimate']['arrayArea']} m² array</Text>
+            <Text style={Theme.listText}>{parseFloat(item['results']['kwhGeneratedPerYear']).toFixed(0)} KWh/year</Text>
+            <Text style={Theme.listText}>{moment(item['results']['dateTime']).fromNow()}</Text>
+          </View>
         </TouchableOpacity>
       </View>
     );

@@ -171,6 +171,8 @@ export default {
         textAlign: "center",
         fontSize: 20,
         color: colours.background,
+        width: '30%',
+        margin: 5
     },
     customCardContainer: {
         backgroundColor: colours.button,
