@@ -22,7 +22,7 @@ const ResultsSelectionScreen = ({navigation}) => {
   const loadList = () => {
     if (data == null) {
       return <Text style={Theme.heading}>Loading</Text>
-    } else if (data == []) {
+    } else if (data.length == 0) {
       return <Text style={Theme.heading}>No estimates have been saved yet</Text>
     } else {
       return <CustomList data={data} onPress={ (index) => navigation.push('ResultsScreen', {index: index})}/>
