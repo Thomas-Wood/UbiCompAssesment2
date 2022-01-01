@@ -111,6 +111,10 @@ export default {
         margin: 10,
         fontSize: 18,
     },
+    title: {
+        textAlign: 'center',
+        fontSize: 30,
+    },
     multipleChoiceText: {
         color: colours.buttonText,
         fontSize: 20,

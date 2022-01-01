@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import CustomButton from "../components/CustomButton";
 import CustomInputSectionButton from "../components/CustomInputSectionButton";
 import CustomLoadingModal from "../components/CustomLoadingModal";
@@ -75,7 +75,12 @@ const InputProgressScreen = ({navigation, route}) => {
       <CustomLoadingModal
         visible={loading}/>
 
-      <Text style={Theme.heading}>Complete each section to get an estimate on solar power generation</Text>
+      <Text style={Theme.heading}>Powered by</Text>
+
+      <Image style={{height: 80, width: '75%'}} source={require('../assets/NRELlogo.jpg')} />
+
+
+      <Text style={Theme.heading}>Complete each section and press submit to get an estimate on solar power generation for a location.</Text>
       <CustomInputSectionButton
         text={'Location'} 
         onPress={ () => navigation.push('Location', {changeLocationState: changeLocationState})}
@@ -91,10 +96,12 @@ const InputProgressScreen = ({navigation, route}) => {
         onPress={ () => navigation.push('Electricity', {changeElectricityState: changeElectricityState})}
         complete={electricityState}
       />
-      <CustomButton 
-        text={"Submit"} 
-        onPress={submitFunction}
-      />
+      <View style={{paddingTop: 50}}>
+        <CustomButton 
+          text={"Submit"} 
+          onPress={submitFunction}
+        />
+      </View>
     </View>
   );
 };
