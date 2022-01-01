@@ -168,4 +168,17 @@ export default {
         fontSize: 20,
         color: colours.background,
     },
+    customCardContainer: {
+        backgroundColor: colours.button,
+        margin: 5,
+        borderRadius: 5,
+        elevation: 1,
+        padding: 10,
+        flex: 1,
+        width: screen.width*0.95,
+    },
+    resultsText: {
+        color: colours.buttonText,
+        fontSize: 20,
+    },
 }
