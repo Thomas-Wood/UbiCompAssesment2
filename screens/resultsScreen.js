@@ -33,10 +33,30 @@ const ResultsScreen = ({navigation, route}) => {
     return getSavedEstimates()
   }, [])
 
+  const deleteResult = async () => {
+    // delete from saved results
+    let savedData = await getObject('savedEstimates')
+    savedData.splice(index, 1)
+    await storeObject('savedEstimates', savedData)
+    
+    navigation.goBack()
+  }
+
+  const editResult = async () => {
+    // Update currentEstimate with the selected one
+    await storeObject('currentEstimate', data['estimate'])
+
+    // delete from saved results
+    let savedData = await getObject('savedEstimates')
+    savedData.splice(index, 1)
+    await storeObject('savedEstimates', savedData)
+
+    navigation.navigate('New estimate')
+  }
+
   const mainContent = () => {
     if (data == null) {
-      return (<CustomLoadingModal
-        visible={true}/>)
+      return (<CustomLoadingModal visible={true}/>)
     } else {
       return (
         <View>
@@ -82,8 +102,8 @@ const ResultsScreen = ({navigation, route}) => {
           </View>
 
           <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-            <CustomDeleteButton onPress={() => console.log("Delete the thing!")}/>
-            <CustomEditButton onPress={() => console.log("Edit the thing!")}/>
+            <CustomDeleteButton onPress={deleteResult}/>
+            <CustomEditButton onPress={editResult}/>
           </View>
 
         </View>
