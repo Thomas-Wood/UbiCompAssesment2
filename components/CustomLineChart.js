@@ -57,7 +57,7 @@ const CustomLineChart = ({data}) => {
 
   return (
     <Chart
-      style={{ height: '100%', width: '100%' }}
+      style={{ height: '100%', width: '90%' }}
       data={[
         { x: 0, y: data[0] },
         { x: 1, y: data[1] },

@@ -63,7 +63,8 @@ const ResultsScreen = ({navigation, route}) => {
             <Text style={Theme.resultsText}>{(parseFloat(data['results']['kwhGeneratedPerYear'])).toFixed(0)} KWh</Text>
           </CustomCard>
 
-          <View style={{height: '35%'}}>
+          <View style={{height: '35%', flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={{transform: [{ rotate: "-90deg" }]}}>KWh</Text>
             <CustomLineChart data={data['results']['monthlyAC']}/>
           </View>
 
