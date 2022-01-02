@@ -5,12 +5,18 @@ import CustomList from "../components/CustomList";
 import Theme from "../Theme";
 import { getObject } from "../tools/asyncStorageHelper";
 
+/**
+ * 
+ * @param {*} param0 This screen requires the navigation object
+ * @returns A screen containing a list of saved estimates and ther results
+ */
 const ResultsSelectionScreen = ({navigation}) => {
 
   let [data, changeData] = React.useState(null)
 
   const isFocused = useIsFocused()
 
+  // Update the list on first load and when the screen is navigated to
   React.useEffect(() => {
     async function getSavedEstimates() {
       let savedData = await getObject('savedEstimates')
@@ -19,6 +25,7 @@ const ResultsSelectionScreen = ({navigation}) => {
     return getSavedEstimates()
   }, [isFocused])
 
+  // Load the list of a message when it's empty / loading
   const loadList = () => {
     if (data == null) {
       return <Text style={Theme.heading}>Loading</Text>
