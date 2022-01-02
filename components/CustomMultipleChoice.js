@@ -3,7 +3,6 @@ import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from '@expo/vector-icons';
 import Theme from "../Theme";
-import { render } from "react-dom";
 
 const CustomMultipleChoice = ({label, options, currentState, stateChangeFunction, onPress}) => {
 

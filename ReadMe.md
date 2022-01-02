@@ -46,3 +46,14 @@ Results is a dictionary containing:
 - minBenefit
 - maxBenefit
 - monthlyAC (List of floats, 12 items long)
+
+## Non-standard libraries
+
+- React Navigation Bottom Tab Material Navigator
+- React Navigation Stack Navigator
+- React Native Maps
+- Expo Location
+- Async Storage
+- Moment
+- Expo Vector Icons
+- react-native-responsive-linechart
