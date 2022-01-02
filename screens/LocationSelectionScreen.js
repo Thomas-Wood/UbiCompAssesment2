@@ -8,6 +8,11 @@ import * as Location from 'expo-location';
 import { getObject, storeObject } from "../tools/asyncStorageHelper";
 import CustomModal from "../components/CustomModal";
 
+/**
+ * 
+ * @param {*} param0 Require navigation and route
+ * @returns A screen to select a location by tapping on a map, or using your GPS
+ */
 const LocationSelectionScreen = ({navigation, route}) => {
 
   let changeLocationState = route.params.changeLocationState
@@ -19,6 +24,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
   let [modalVisible, setModalVisible] = React.useState(false);
   let [modalContent, setModalContent] = React.useState("Placeholder Text");
 
+  // The the user's location by GPS
   const getCurrentLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
@@ -38,6 +44,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
     }
   }
 
+  // On first load, get the lat and long if already inputed
   React.useEffect(() => {
     async function getValues() {
       let currentEstimate = await getObject('currentEstimate')
@@ -49,6 +56,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
     return getValues()
   }, [])
 
+  // Save the lat and long and return to the progress screen
   const submitFunction = async () => {
     if (currentLat != null && currentLong != null) {
       var currentEstimate = await getObject('currentEstimate')
@@ -62,20 +70,23 @@ const LocationSelectionScreen = ({navigation, route}) => {
       changeLocationState(true)
       navigation.navigate('ProgressScreen')
     } else {
-      showModal("Please select a location on the map or using the GPS button")
+      showModal("Please select a location on the map or use the GPS button")
     }
   }
 
+  // Edit the modal text and show it
   const showModal = (content) => {
     setModalContent(content)
     setModalVisible(!modalVisible)
   }
 
+  // Move the marker when tapped on the map
   const onMapPress = (event) => {
     setLat(event.nativeEvent.coordinate.latitude)
     setLong(event.nativeEvent.coordinate.longitude)
   }
 
+  // Display the marker is a location has been selected
   const getMarker = () => {
     if (currentLat != null && currentLong != null) {
       return (<Marker coordinate={{latitude: currentLat, longitude: currentLong}}/>)
@@ -84,6 +95,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
     }
   }
 
+  // Display the map
   const getMap = () => {
     if (currentLat != null && currentLong != null) {
       return (
