@@ -1,5 +1,10 @@
 import moment from "moment";
 
+/**
+ * 
+ * @param {*} currentEstimate - A dictionary containing: arrayArea, panelRating, moduleType, arrayType, tilt, azimuth, latitude, longitude, electricRate and exportRate
+ * @returns A dictionary containing: dateTime, kwhGeneratedPerYear, minBenefit, maxBenefit and monthlyAC
+ */
 export async function getAPI(currentEstimate) {
     // Full details on the request can be found on the NREL developers site: https://developer.nrel.gov/docs/solar/pvwatts/v6/#request-url
 

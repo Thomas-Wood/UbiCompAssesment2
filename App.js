@@ -8,6 +8,10 @@ import ResultsNavigationScreen from './screens/ResultsNavigationScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
+/**
+ * 
+ * @returns The Navigation container containing the application
+ */
 export default function App() {
   return (
     <NavigationContainer theme={Theme.navigationTheme}>
@@ -18,9 +22,9 @@ export default function App() {
           tabBarIcon: ({ focused, color }) => {
             let iconName;
             if (route.name === 'New estimate') {
-              iconName = focused ? 'addfile' : 'addfile'; // Could use a different icon or colour when not in focus
+              iconName = 'addfile'
             } else if (route.name === 'Saved estimates') {
-              iconName = focused ? 'folder1' : 'folder1';
+              iconName = 'folder1'
             }
             return <AntDesign name={iconName} size={24} color={color} />
           },
