@@ -5,6 +5,11 @@ import ResultsSelectionScreen from './ResultsSelectionScreen';
 
 const Stack = createStackNavigator();
 
+/**
+ * 
+ * @param {*} param0 Requires navigation
+ * @returns The stack navigator for the results list and results screens
+ */
 const ResultsNavigationScreen = ({navigation}) => {
 
   return (
