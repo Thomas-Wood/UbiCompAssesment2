@@ -4,6 +4,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Theme from "../Theme";
 import moment from "moment";
 
+/**
+ * 
+ * @param {*} param0 Requires data(Array of objects)
+ * @returns a custom Flatlist
+ */
 const CustomList = ({data, onPress}) => {
 
   const renderItem = ({item, index}) => {

@@ -4,6 +4,11 @@ import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from '@expo/vector-icons';
 import Theme from "../Theme";
 
+/**
+ * 
+ * @param {*} param0 Requires label(string), defaultValue(string/number), prefix(string), numeric(bool), stateChangeFunction(function), onpress(function)
+ * @returns A custom input box
+ */
 const CustomInputBox = ({label, defaultValue, prefix, numeric, stateChangeFunction, onPress}) => {
 
   let keyboardType = 'default'

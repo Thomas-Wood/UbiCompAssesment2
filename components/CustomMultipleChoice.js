@@ -4,8 +4,14 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from '@expo/vector-icons';
 import Theme from "../Theme";
 
+/**
+ * 
+ * @param {*} param0 Requires label(string), options(array of strings), currentState(index in array), stateChangeFunction(function), onPress(function to call when tapping info icon)
+ * @returns A multiple choice box
+ */
 const CustomMultipleChoice = ({label, options, currentState, stateChangeFunction, onPress}) => {
 
+  // Build the multiple choice rows
   const generateOptions = () => {
     let renderedOptions = []
     for (let i=0; i<options.length; i++) {

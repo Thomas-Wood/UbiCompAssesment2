@@ -2,6 +2,11 @@ import React from "react";
 import { Pressable, Text, View, Modal } from "react-native";
 import Theme from "../Theme";
 
+/**
+ * 
+ * @param {*} param0 Requires content(string), visible(bool), changeVisibleFunction(function)
+ * @returns A customised modal
+ */
 const CustomModal = ({content, visible, changeVisibleFunction}) => {
   return (
     <Modal

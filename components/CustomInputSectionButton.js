@@ -4,6 +4,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { AntDesign } from '@expo/vector-icons';
 import Theme from "../Theme";
 
+/**
+ * 
+ * @param {*} param0 Requires text(string), onPress(function), complete(bool)
+ * @returns A button with a tick to indicate if the section is completed or not
+ */
 const CustomInputSectionButton = ({text, onPress, complete}) => {
 
   let tick = null

@@ -1,7 +1,12 @@
 import React from "react";
-import { Pressable, Text, View, Modal, Image } from "react-native";
+import { Text, View, Modal, Image } from "react-native";
 import Theme from "../Theme";
 
+/**
+ * 
+ * @param {*} param0 Requires visible(bool)
+ * @returns A modal dressed as a loading pop up
+ */
 const CustomLoadingModal = ({visible}) => {
   return (
     <Modal

@@ -4,6 +4,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Theme from "../Theme";
 import { AntDesign } from '@expo/vector-icons';
 
+/**
+ * 
+ * @param {*} param0 Requires onPress(function), children are optional
+ * @returns 
+ */
 const CustomCard = ({children, onPress}) => {
   return (
     <View style={Theme.customCardContainer}>

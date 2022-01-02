@@ -2,8 +2,14 @@ import React from "react";
 import Theme from "../Theme";
 import { Chart, Line, Area, HorizontalAxis, VerticalAxis } from 'react-native-responsive-linechart'
 
+/**
+ * 
+ * @param {*} param0 data(Array of floats, 12 items long)
+ * @returns A customised line chart for showing KWh per month
+ */
 const CustomLineChart = ({data}) => {
 
+  // Find the highest value
   let highestValue = 0
   for (let i=0; i<data.length; i++) {
     if (data[i] > highestValue) {
@@ -11,8 +17,10 @@ const CustomLineChart = ({data}) => {
     }
   }
 
+  // Set the graph's Y-axis limit
   let upperLimit = (highestValue * 1.1).toPrecision(2)
 
+  // Convert the X-axis id to a month
   const getMonthString = (monthNumber) => {
     let month = ""
     switch (monthNumber) {
