@@ -11,6 +11,11 @@ import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import CustomLineChart from "../components/CustomLineChart";
 
+/**
+ * 
+ * @param {*} param0 Require navigation and route. route.params.index should also be provided.
+ * @returns  results screen shows the results of an estimate and provides edit and delete buttons.
+ */
 const ResultsScreen = ({navigation, route}) => {
 
   let [data, changeData] = React.useState(null)
@@ -20,11 +25,13 @@ const ResultsScreen = ({navigation, route}) => {
 
   let index = route.params.index
 
+  // Change the modal text and show it
   const showModal = (content) => {
     setModalContent(content)
     setModalVisible(!modalVisible)
   }
 
+  // On first load, get the data
   React.useEffect(() => {
     async function getSavedEstimates() {
       let savedData = await getObject('savedEstimates')
@@ -33,17 +40,17 @@ const ResultsScreen = ({navigation, route}) => {
     return getSavedEstimates()
   }, [])
 
+  // Remove the result from storage and go back to the results list page
   const deleteResult = async () => {
-    // delete from saved results
     let savedData = await getObject('savedEstimates')
     savedData.splice(index, 1)
     await storeObject('savedEstimates', savedData)
-    
     navigation.goBack()
   }
 
+  // Take the user back to the edit page to tweak their inputs
   const editResult = async () => {
-    // Update currentEstimate with the selected one
+    // Update currentEstimate with the current selected one
     await storeObject('currentEstimate', data['estimate'])
 
     // delete from saved results
@@ -51,9 +58,11 @@ const ResultsScreen = ({navigation, route}) => {
     savedData.splice(index, 1)
     await storeObject('savedEstimates', savedData)
 
+    // Go to the edit page to change the values
     navigation.navigate('New estimate')
   }
 
+  // If loading, show the loading modal, otherwise load the main page content
   const mainContent = () => {
     if (data == null) {
       return (<CustomLoadingModal visible={true}/>)
