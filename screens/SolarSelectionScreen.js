@@ -132,7 +132,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
           defaultValue={panelRating} 
           numeric={true} 
           stateChangeFunction={onChangePanelRating}
-          onPress={ () => showModal("This is how much energy a 1m² panel can produce. 1KW is a common estimate.")}
+          onPress={ () => showModal("This is how much energy a 1m² panel can produce in standard test conditions. 1KW is a common estimate.")}
         />
 
         <CustomMultipleChoice
@@ -146,7 +146,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
         {angleInputs()}
 
         <CustomButton 
-          text={"Submit"} 
+          text={"Confirm Details"} 
           onPress={submitFunction}
         />
       </View>

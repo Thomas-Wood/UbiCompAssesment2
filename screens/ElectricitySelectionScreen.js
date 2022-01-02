@@ -83,7 +83,7 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
         />
 
         <CustomButton 
-          text={"Submit"} 
+          text={"Confirm Details"} 
           onPress={submitFunction}
         />
 

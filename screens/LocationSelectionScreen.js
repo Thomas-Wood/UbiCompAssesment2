@@ -142,7 +142,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
       <View style={{height: '20%', width: '100%'}}>
         <View style={Theme.container}>
           <CustomButton 
-            text={"Submit"} 
+            text={"Confirm Location"} 
             onPress={submitFunction}
           />
         </View>
