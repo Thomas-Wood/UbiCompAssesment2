@@ -7,6 +7,11 @@ import CustomModal from "../components/CustomModal";
 import Theme from "../Theme";
 import { getObject, storeObject } from "../tools/asyncStorageHelper";
 
+/**
+ * 
+ * @param {*} param0 Requires navigation and route
+ * @returns The electricity selection screen. Has inputs for cost of import and export of electricity
+ */
 const ElectricitySelectionScreen = ({navigation, route}) => {
 
   let changeElectricityState = route.params.changeElectricityState
@@ -17,6 +22,7 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
   let [modalVisible, setModalVisible] = React.useState(false);
   let [modalContent, setModalContent] = React.useState("Placeholder Text");
 
+  // On first load, get the existing values if any
   React.useEffect(() => {
     async function getValues() {
       let currentEstimate = await getObject('currentEstimate')
@@ -28,6 +34,7 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
     return getValues()
   }, [])
 
+  // Save the values and return to the progress screen
   const submitFunction = async () => {
     let electricRatevalid = (electricRate > 0 && electricRate < 100)
     let exportRateValid = (exportRate >= 0 && exportRate < 100)
@@ -48,6 +55,7 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
     }    
   }
 
+  // Update the modal text and show it
   const showModal = (content) => {
     setModalContent(content)
     setModalVisible(!modalVisible)
