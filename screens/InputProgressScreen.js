@@ -8,8 +8,14 @@ import Theme from "../Theme";
 import { getObject, storeObject } from "../tools/asyncStorageHelper";
 import { getAPI } from '../tools/pvwatts';
 
+/**
+ * 
+ * @param {*} param0 Requires navigation and route
+ * @returns A progress screen allowing navigation to the three input sections. On submit, it saves the details and results and redirects to the results page.
+ */
 const InputProgressScreen = ({navigation, route}) => {
 
+  // If the section has been completed or not
   const [locationState, changeLocationState] = React.useState(false);
   const [solarState, changeSolarState] = React.useState(false);
   const [electricityState, changeElectricityState] = React.useState(false);
@@ -19,6 +25,7 @@ const InputProgressScreen = ({navigation, route}) => {
 
   let [loading, setLoading] = React.useState(false);
 
+  // If all sections are complete, make the API call, save the data and redirect to the results page
   const submitFunction = async () => {
     if (locationState == true && solarState == true && electricityState == true) {
       setLoading(true)
@@ -32,7 +39,6 @@ const InputProgressScreen = ({navigation, route}) => {
         'estimate': currentEstimate,
         'results': results
       }
-
       var savedEstimates = await getObject('savedEstimates')
       if (savedEstimates == null) {
         savedEstimates = []
@@ -50,7 +56,7 @@ const InputProgressScreen = ({navigation, route}) => {
       changeElectricityState(false)
 
 
-      // Load the results page with the new index
+      // Load the results page
       navigation.navigate('Saved estimates', { screen: 'ResultSelection'})
 
       setLoading(false)
@@ -59,6 +65,7 @@ const InputProgressScreen = ({navigation, route}) => {
     }
   }
 
+  // Edit the modal text and show it
   const showModal = (content) => {
     setModalContent(content)
     setModalVisible(!modalVisible)
