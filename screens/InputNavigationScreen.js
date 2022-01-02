@@ -12,6 +12,11 @@ LogBox.ignoreLogs(['Non-serializable values were found in the navigation state',
 
 const Stack = createStackNavigator();
 
+/**
+ * 
+ * @param {*} param0 Requires navigation
+ * @returns The stack navigator containing the progress screen and each input section
+ */
 const InputProgressNavigationScreen = ({navigation}) => {
 
   return (
