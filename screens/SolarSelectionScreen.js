@@ -10,6 +10,11 @@ import CustomModal from "../components/CustomModal";
 
 // Descriptions are based of the API's descriptions found here: https://pvwatts.nrel.gov/
 
+/**
+ * 
+ * @param {*} param0 - Navigation and route should be provided to this screen
+ * @returns The screen containing the inputs for details on a solar panel. On submit, the infomation is stored in currentEstimate in async storage, the state is updated and the screen returns to the progress screen.
+ */
 const SolarSelectionScreen = ({navigation, route}) => {
 
   let changeSolarState = route.params.changeSolarState
@@ -24,6 +29,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
   let [modalVisible, setModalVisible] = React.useState(false);
   let [modalContent, setModalContent] = React.useState("Placeholder Text");
 
+  // On first load, if data has already been submited then load that, otherwise use the default values.
   React.useEffect(() => {
     async function getValues() {
       let currentEstimate = await getObject('currentEstimate')
@@ -39,6 +45,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
     return getValues()
   }, [])
 
+  // Called by the confirm details button. This saves the info and redirects back to the progress screen
   const submitFunction = async () => {
     let arrayAreaValid = (arrayArea > 0.1)
     let panelRatingValid = (panelRating > 0.1)
@@ -65,11 +72,13 @@ const SolarSelectionScreen = ({navigation, route}) => {
     }
   }
 
+  // Update the modal text and show it
   const showModal = (content) => {
     setModalContent(content)
     setModalVisible(!modalVisible)
   }
 
+  // Show the angle input boxes if appropriate (e.g. angles not needed if panel selected is self tracking)
   const angleInputs = () => {
     if (arrayType == 0 || arrayType == 1 || arrayType == 2 || arrayType == 3) {
       return (

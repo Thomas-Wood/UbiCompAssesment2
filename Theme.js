@@ -25,6 +25,9 @@ const NavigationTheme = {
     },
   };
 
+/**
+ * The styling for the application wrapped for easy access in different files
+ */
 export default {
     colours: colours,
     navigationTheme: NavigationTheme,
