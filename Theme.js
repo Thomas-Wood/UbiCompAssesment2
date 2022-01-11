@@ -1,7 +1,7 @@
 import { Dimensions } from "react-native";
 
 const colours = {
-    primary: '#0C7489',
+    primary: '#075463',
     background: '#ffffff',
     card: '#bad9b5',
     button: '#0C7489',
