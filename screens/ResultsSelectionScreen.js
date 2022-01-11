@@ -8,7 +8,7 @@ import { getObject } from "../tools/asyncStorageHelper";
 /**
  * 
  * @param {*} param0 This screen requires the navigation object
- * @returns A screen containing a list of saved estimates and ther results
+ * @returns A screen containing a list of historical estimates and ther results
  */
 const ResultsSelectionScreen = ({navigation}) => {
 
@@ -28,7 +28,7 @@ const ResultsSelectionScreen = ({navigation}) => {
   // Load the list of a message when it's empty / loading
   const loadList = () => {
     if (data == null || data.length == 0) {
-      return <Text style={Theme.heading}>No estimates have been saved yet</Text>
+      return <Text style={Theme.heading}>No estimates to show</Text>
     } else {
       return <CustomList data={data} onPress={ (index) => navigation.push('ResultsScreen', {index: index})}/>
     }
@@ -36,7 +36,7 @@ const ResultsSelectionScreen = ({navigation}) => {
 
   return (
     <View style={Theme.container}>
-      <Text style={{...Theme.heading, paddingTop: 15}}>Saved Estimates</Text>
+      <Text style={{...Theme.heading, paddingTop: 15}}>History</Text>
       {loadList()}
     </View>
   );

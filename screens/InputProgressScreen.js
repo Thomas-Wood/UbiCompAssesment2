@@ -57,7 +57,7 @@ const InputProgressScreen = ({navigation, route}) => {
 
 
       // Load the results page
-      navigation.navigate('Saved estimates', { screen: 'ResultSelection'})
+      navigation.navigate('History', { screen: 'ResultSelection'})
 
       setLoading(false)
     } else {

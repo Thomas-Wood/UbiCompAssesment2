@@ -23,7 +23,7 @@ export default function App() {
             let iconName;
             if (route.name === 'New estimate') {
               iconName = 'addfile'
-            } else if (route.name === 'Saved estimates') {
+            } else if (route.name === 'History') {
               iconName = 'folder1'
             }
             return <AntDesign name={iconName} size={24} color={color} />
@@ -31,7 +31,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="New estimate" component={InputNavigationScreen} />
-        <Tab.Screen name="Saved estimates" component={ResultsNavigationScreen} />
+        <Tab.Screen name="History" component={ResultsNavigationScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
