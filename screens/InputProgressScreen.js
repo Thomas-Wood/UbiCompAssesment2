@@ -82,8 +82,7 @@ const InputProgressScreen = ({navigation, route}) => {
       <CustomLoadingModal
         visible={loading}/>
 
-      <Text style={{...Theme.heading, marginTop: 30}}>Complete each section and press Calculate to get an estimate on solar power generation for a location.</Text>
-      <Text style={{...Theme.heading}}>Fill out each section below</Text>
+      <Text style={{...Theme.heading, marginTop: 30}}>Enter details for each section below</Text>
       <CustomInputSectionButton
         text={'Location'} 
         onPress={ () => navigation.push('Location', {changeLocationState: changeLocationState})}
