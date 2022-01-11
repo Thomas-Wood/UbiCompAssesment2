@@ -59,7 +59,7 @@ const ResultsScreen = ({navigation, route}) => {
     await storeObject('savedEstimates', savedData)
 
     // Go to the edit page to change the values
-    navigation.navigate('New estimate')
+    navigation.navigate('Calculate Estimate')
   }
 
   // If loading, show the loading modal, otherwise load the main page content

@@ -87,7 +87,7 @@ const InputProgressScreen = ({navigation, route}) => {
       <Image style={{height: 80, width: '75%'}} source={require('../assets/NRELlogo.jpg')} />
 
 
-      <Text style={Theme.heading}>Complete each section and press Create Estimate to get an estimate on solar power generation for a location.</Text>
+      <Text style={Theme.heading}>Complete each section and press Calculate to get an estimate on solar power generation for a location.</Text>
       <CustomInputSectionButton
         text={'Location'} 
         onPress={ () => navigation.push('Location', {changeLocationState: changeLocationState})}
@@ -105,7 +105,7 @@ const InputProgressScreen = ({navigation, route}) => {
       />
       <View style={{paddingTop: 50}}>
         <CustomButton 
-          text={"Create Estimate"} 
+          text={"Calculate"} 
           onPress={submitFunction}
         />
       </View>

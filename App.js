@@ -21,7 +21,7 @@ export default function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color }) => {
             let iconName;
-            if (route.name === 'New estimate') {
+            if (route.name === 'Calculate Estimate') {
               iconName = 'addfile'
             } else if (route.name === 'History') {
               iconName = 'folder1'
@@ -30,7 +30,7 @@ export default function App() {
           },
         })}
       >
-        <Tab.Screen name="New estimate" component={InputNavigationScreen} />
+        <Tab.Screen name="Calculate Estimate" component={InputNavigationScreen} />
         <Tab.Screen name="History" component={ResultsNavigationScreen} />
       </Tab.Navigator>
     </NavigationContainer>
