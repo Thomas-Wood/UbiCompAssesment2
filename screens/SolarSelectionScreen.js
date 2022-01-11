@@ -47,10 +47,10 @@ const SolarSelectionScreen = ({navigation, route}) => {
 
   // Called by the confirm details button. This saves the info and redirects back to the progress screen
   const submitFunction = async () => {
-    let arrayAreaValid = (arrayArea > 0.1)
+    let arrayAreaValid = (arrayArea > 0.1 && arrayArea < 9999.99)
     let panelRatingValid = (panelRating > 0.1)
     let tiltValid = (tilt >= 0 && tilt <= 90)
-    let azimuthValid = (azimuth >= 0 && azimuth <= 360)
+    let azimuthValid = (azimuth >= 0 && azimuth <= 359)
 
     if (arrayAreaValid && panelRatingValid && tiltValid && azimuthValid) {
       var currentEstimate = await getObject('currentEstimate')
@@ -68,7 +68,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
       changeSolarState(true)
       navigation.navigate('ProgressScreen')
     } else {
-      showModal("Make sure your array area and panel rating is more than 0.1, tilt is between 0 and 90, and the angle from north is between 0 and 360.")
+      showModal("Make sure your array area is between 0.1 and 10,000, panel rating is more than 0.1, tilt is between 0 and 90, and the angle from north is between 0 and 359.")
     }
   }
 
@@ -149,7 +149,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
           options={['Fixed - Open Rack', 'Fixed - Roof Mounted', '1-Axis Tracking (Roll)', '1-Axis Tracking (Pitch)', '2-Axis Tracking']}
           currentState={arrayType}
           stateChangeFunction={onChangeArrayType}
-          onPress={() => showModal("The array type describes whether the PV modules in the array are fixed, or whether they move to track the movement of the sun across the sky with one or two axes of rotation.")}
+          onPress={() => showModal("The array type describes whether the photovoltic modules in the array are fixed, or whether they move to track the movement of the sun across the sky with one or two axes of rotation.")}
         />
 
         {angleInputs()}
