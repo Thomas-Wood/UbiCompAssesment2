@@ -82,28 +82,29 @@ const InputProgressScreen = ({navigation, route}) => {
       <CustomLoadingModal
         visible={loading}/>
 
-      <Text style={Theme.heading}>Powered by</Text>
-
-      <Image style={{height: 80, width: '75%'}} source={require('../assets/NRELlogo.jpg')} />
-
-
-      <Text style={Theme.heading}>Complete each section and press Calculate to get an estimate on solar power generation for a location.</Text>
+      <Text style={{...Theme.heading, marginTop: 30}}>Complete each section and press Calculate to get an estimate on solar power generation for a location.</Text>
+      <Text style={{...Theme.heading}}>Fill out each section below</Text>
       <CustomInputSectionButton
         text={'Location'} 
         onPress={ () => navigation.push('Location', {changeLocationState: changeLocationState})}
         complete={locationState}
       />
       <CustomInputSectionButton
-        text={'Solar Panel Details'} 
-        onPress={ () => navigation.push('Solar', {changeSolarState: changeSolarState})}
-        complete={solarState}
-      />
-      <CustomInputSectionButton
         text={'Electricity prices'} 
         onPress={ () => navigation.push('Electricity', {changeElectricityState: changeElectricityState})}
         complete={electricityState}
       />
-      <View style={{paddingTop: 50}}>
+      <CustomInputSectionButton
+        text={'Solar Panel Details'} 
+        onPress={ () => navigation.push('Solar', {changeSolarState: changeSolarState})}
+        complete={solarState}
+      />
+
+      <Text style={Theme.heading}>Powered by</Text>
+
+      <Image style={{height: 80, width: '75%'}} source={require('../assets/NRELlogo.jpg')} />
+
+      <View>
         <CustomButton 
           text={"Calculate"} 
           onPress={submitFunction}
