@@ -107,6 +107,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
           latitudeDelta: 0.05,
           longitudeDelta: 0.05,
         }}
+        toolbarEnabled={false}
         onPress={onMapPress}>
         {getMarker()}
       </MapView>
@@ -121,6 +122,7 @@ const LocationSelectionScreen = ({navigation, route}) => {
           latitudeDelta: 8,
           longitudeDelta: 8,
         }}
+        toolbarEnabled={false}
         onPress={onMapPress}>
         {getMarker()}
       </MapView>
