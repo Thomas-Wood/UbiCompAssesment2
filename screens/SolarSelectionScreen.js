@@ -48,9 +48,24 @@ const SolarSelectionScreen = ({navigation, route}) => {
   // Called by the confirm details button. This saves the info and redirects back to the progress screen
   const submitFunction = async () => {
     let arrayAreaValid = (arrayArea > 0.1 && arrayArea < 9999.99)
-    let panelRatingValid = (panelRating > 0.1)
+    let panelRatingValid = (panelRating > 0.1 && panelRating < 10)
     let tiltValid = (tilt >= 0 && tilt <= 90)
     let azimuthValid = (azimuth >= 0 && azimuth <= 359)
+
+    let errorMessage = 'Make sure that your\n\n'
+
+    if (!arrayAreaValid) {
+      errorMessage += "Array area is between\n0.1 and 10,000\n\n"
+    }
+    if (!panelRatingValid) {
+      errorMessage += "Panel rating is between\n0.1 and 10\n\n"
+    }
+    if (!tiltValid) {
+      errorMessage += "Tilt is between\n0 and 90\n\n"
+    }
+    if (!azimuthValid) {
+      errorMessage += "Angle from north is between\n0 and 359\n\n"
+    }
 
     if (arrayAreaValid && panelRatingValid && tiltValid && azimuthValid) {
       var currentEstimate = await getObject('currentEstimate')
@@ -68,7 +83,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
       changeSolarState(true)
       navigation.navigate('ProgressScreen')
     } else {
-      showModal("Make sure your array area is between 0.1 and 10,000, panel rating is more than 0.1, tilt is between 0 and 90, and the angle from north is between 0 and 359.")
+      showModal(errorMessage)
     }
   }
 
