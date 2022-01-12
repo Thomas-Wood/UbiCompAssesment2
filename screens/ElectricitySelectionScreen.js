@@ -70,7 +70,7 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
           visible={modalVisible}
           changeVisibleFunction={setModalVisible}/>
 
-        <Text style={Theme.heading}>These details will help calculate how much money you could save</Text>
+        <Text style={Theme.heading}>Enter your current electricity details</Text>
 
         <CustomInputBox
           label={"Your Electricity Rate"}
