@@ -87,7 +87,7 @@ const ElectricitySelectionScreen = ({navigation, route}) => {
           defaultValue={exportRate}
           numeric={true} 
           stateChangeFunction={onChangeExportRate} 
-          onPress={ () => showModal('This is how much your electricity supplier will pay you for any electricity you export to the grid. These values vary greatly so check with your supplier. 5p per KWh is a common value.')}
+          onPress={ () => showModal('This is how much your electricity supplier will pay you for any electricity you export to the grid. These values vary greatly so check with your supplier. 5p per KWh is a common estimate.')}
         />
 
         <CustomButton 
