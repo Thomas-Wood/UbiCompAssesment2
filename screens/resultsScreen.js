@@ -10,6 +10,7 @@ import CustomDeleteButton from "../components/CustomDeleteButton";
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import CustomLineChart from "../components/CustomLineChart";
+import moment from "moment";
 
 /**
  * 
@@ -36,9 +37,22 @@ const ResultsScreen = ({navigation, route}) => {
     async function getSavedEstimates() {
       let savedData = await getObject('savedEstimates')
       changeData(savedData[index])
+      if (data != null) {
+        navigation.setOptions({ title: moment(data['results']['dateTime']).format('Do MMMM YYYY, h:mm a') })
+      }
     }
     return getSavedEstimates()
   }, [])
+
+  // Once data has loaded
+  React.useEffect(() => {
+    async function updateTitle() {
+      if (data != null) {
+        navigation.setOptions({ title: moment(data['results']['dateTime']).format('Do MMMM YYYY, h:mm a') })
+      }
+    }
+    return updateTitle()
+  }, [data])
 
   // Remove the result from storage and go back to the results list page
   const deleteResult = async () => {
