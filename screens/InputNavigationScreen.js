@@ -25,6 +25,7 @@ const InputProgressNavigationScreen = ({navigation}) => {
           name="ProgressScreen"
           component={InputProgressScreen}
           options={{ headerShown: false }}
+          initialParams={{prefilled: false}}
       />
       <Stack.Screen
           name="Location"
