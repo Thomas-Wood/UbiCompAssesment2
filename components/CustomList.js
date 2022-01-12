@@ -16,7 +16,7 @@ const CustomList = ({data, onPress}) => {
       <View style={Theme.listItemBox}>
         <TouchableOpacity onPress={() => onPress(index)}>
           <View style={{flexDirection: 'row', justifyContent: "center"}}>
-            <Text style={Theme.listText}>{item['estimate']['arrayArea']} m² array</Text>
+            <Text style={Theme.listText}>{item['estimate']['arrayArea']} m²</Text>
             <Text style={Theme.listText}>{parseFloat(item['results']['kwhGeneratedPerYear']).toFixed(0)} KWh/year</Text>
             <Text style={Theme.listText}>{moment(item['results']['dateTime']).fromNow()}</Text>
           </View>

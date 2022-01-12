@@ -191,4 +191,9 @@ export default {
         color: colours.buttonText,
         fontSize: 20,
     },
+    listHeader: {
+        backgroundColor: colours.button,
+        width: screen.width,
+        flexDirection: 'row'
+    }
 }

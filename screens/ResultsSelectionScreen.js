@@ -30,13 +30,22 @@ const ResultsSelectionScreen = ({navigation}) => {
     if (data == null || data.length == 0) {
       return <Text style={Theme.heading}>No estimates to show</Text>
     } else {
-      return <CustomList data={data} onPress={ (index) => navigation.push('ResultsScreen', {index: index})}/>
+      return (
+        <View>
+          <View style={Theme.listHeader}>
+            <Text style={{...Theme.buttonText, fontSize: 20, paddingHorizontal: 21}}>Panel Size</Text>
+            <Text style={{...Theme.buttonText, fontSize: 20, paddingHorizontal: 21}}>Power</Text>
+            <Text style={{...Theme.buttonText, fontSize: 20, paddingHorizontal: 21}}>Created</Text>
+          </View>
+          <CustomList data={data} onPress={ (index) => navigation.push('ResultsScreen', {index: index})}/>
+        </View>
+      )
     }
   }
 
   return (
     <View style={Theme.container}>
-      <Text style={{...Theme.heading, paddingTop: 15}}>History</Text>
+      <Text style={{...Theme.heading, paddingTop: 70}}>History</Text>
       {loadList()}
     </View>
   );
