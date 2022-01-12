@@ -15,22 +15,29 @@ const CustomMultipleChoice = ({label, options, currentState, stateChangeFunction
   const generateOptions = () => {
     let renderedOptions = []
     for (let i=0; i<options.length; i++) {
-      let selectedIcon = null
       if (i == currentState) {
-        selectedIcon = (
+        let selectedIcon = (
           <View style={Theme.multipleChoiceTickIcon}>
             <AntDesign name="checkcircle" size={24} color="white" />
           </View>
         )
+        renderedOptions.push(
+          <TouchableOpacity onPress={() => {stateChangeFunction(i)}} key={i}>
+            <View style={Theme.multipleChoiceRowSelected}>
+              <Text style={Theme.multipleChoiceText}>{options[i]}</Text>
+              {selectedIcon}
+            </View>
+          </TouchableOpacity>
+        )
+      } else {
+        renderedOptions.push(
+          <TouchableOpacity onPress={() => {stateChangeFunction(i)}} key={i}>
+            <View style={Theme.multipleChoiceRow}>
+              <Text style={Theme.multipleChoiceText}>{options[i]}</Text>
+            </View>
+          </TouchableOpacity>
+        )
       }
-      renderedOptions.push(
-        <TouchableOpacity onPress={() => {stateChangeFunction(i)}} key={i}>
-          <View style={Theme.multipleChoiceRow}>
-            <Text style={Theme.multipleChoiceText}>{options[i]}</Text>
-            {selectedIcon}
-          </View>
-        </TouchableOpacity>
-      )
     }
     return renderedOptions
   }

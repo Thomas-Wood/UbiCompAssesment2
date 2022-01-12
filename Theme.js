@@ -131,6 +131,14 @@ export default {
         borderColor: 'rgba(255, 255, 255, 0.5)',
         margin: 5
     },
+    multipleChoiceRowSelected: {
+        flexDirection: 'row',
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: 'rgba(255, 255, 255, 1)',
+        backgroundColor: colours.primary,
+        margin: 5
+    },
     multipleChoiceInputBox: {
         backgroundColor: colours.button,
         justifyContent: 'center',
