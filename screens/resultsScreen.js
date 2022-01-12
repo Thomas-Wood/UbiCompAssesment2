@@ -85,6 +85,8 @@ const ResultsScreen = ({navigation, route}) => {
           changeVisibleFunction={setModalVisible}
           />
 
+          <View style={{height: 5}}/>
+
           <CustomCard onPress={
             () => showModal("The lower value is how much you would be paid by your provider "+
             "if you exported all the electricity you produced. The high value is how much you "+
