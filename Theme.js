@@ -5,6 +5,7 @@ const colours = {
     background: '#ffffff',
     card: '#bad9b5',
     button: '#0C7489',
+    unavailableButton: '#999999',
     buttonText: '#FFFFFF',
 }
 

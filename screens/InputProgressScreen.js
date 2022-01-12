@@ -87,16 +87,19 @@ const InputProgressScreen = ({navigation, route}) => {
         text={'Location'} 
         onPress={ () => navigation.push('Location', {changeLocationState: changeLocationState})}
         complete={locationState}
+        unavailable={false}
       />
       <CustomInputSectionButton
         text={'Electricity prices'} 
         onPress={ () => navigation.push('Electricity', {changeElectricityState: changeElectricityState})}
         complete={electricityState}
+        unavailable={!locationState}
       />
       <CustomInputSectionButton
         text={'Solar Panel Details'} 
         onPress={ () => navigation.push('Solar', {changeSolarState: changeSolarState})}
         complete={solarState}
+        unavailable={!electricityState}
       />
 
       <Text style={Theme.heading}>Powered by</Text>
@@ -107,6 +110,7 @@ const InputProgressScreen = ({navigation, route}) => {
         <CustomButton 
           text={"Calculate"} 
           onPress={submitFunction}
+          unavailable={!solarState}
         />
       </View>
     </View>

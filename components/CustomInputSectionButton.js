@@ -9,7 +9,7 @@ import Theme from "../Theme";
  * @param {*} param0 Requires text(string), onPress(function), complete(bool)
  * @returns A button with a tick to indicate if the section is completed or not
  */
-const CustomInputSectionButton = ({text, onPress, complete}) => {
+const CustomInputSectionButton = ({text, onPress, complete, unavailable}) => {
 
   let tick = null
   if (complete == true) {
@@ -20,12 +20,21 @@ const CustomInputSectionButton = ({text, onPress, complete}) => {
     )
   }
 
-  return (
-    <TouchableOpacity style={Theme.sectionButton} onPress={ () => onPress() }>
-      <Text style={Theme.buttonText}>{text}</Text>
+  if (unavailable == true) {
+    return (
+      <View style={{...Theme.sectionButton, backgroundColor: Theme.colours.unavailableButton}}>
+        <Text style={Theme.buttonText}>{text}</Text>
         {tick}
-    </TouchableOpacity>
-  );
+      </View>
+    );
+  } else {
+    return (
+      <TouchableOpacity style={Theme.sectionButton} onPress={ () => onPress() }>
+        <Text style={Theme.buttonText}>{text}</Text>
+        {tick}
+      </TouchableOpacity>
+    );
+  }
 };
 
 export default CustomInputSectionButton;
