@@ -60,7 +60,7 @@ const InputProgressScreen = ({navigation, route}) => {
       if (savedEstimates == null) {
         savedEstimates = []
       }
-      savedEstimates.push(detailsToSave)
+      savedEstimates.unshift(detailsToSave)
       await storeObject('savedEstimates', savedEstimates)
 
       let index = savedEstimates.length -1
