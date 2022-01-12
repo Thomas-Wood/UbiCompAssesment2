@@ -192,7 +192,7 @@ export default {
         fontSize: 20,
     },
     listHeader: {
-        backgroundColor: colours.button,
+        backgroundColor: colours.primary,
         width: screen.width,
         flexDirection: 'row'
     }

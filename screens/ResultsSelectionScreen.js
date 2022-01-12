@@ -31,7 +31,7 @@ const ResultsSelectionScreen = ({navigation}) => {
       return <Text style={Theme.heading}>No estimates to show</Text>
     } else {
       return (
-        <View>
+        <View style={{paddingBottom: 60}}>
           <View style={Theme.listHeader}>
             <Text style={{...Theme.buttonText, fontSize: 20, paddingHorizontal: 21}}>Panel Size</Text>
             <Text style={{...Theme.buttonText, fontSize: 20, paddingHorizontal: 21}}>Power</Text>
