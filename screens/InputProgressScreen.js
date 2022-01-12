@@ -1,4 +1,5 @@
 import React from "react";
+import { useIsFocused } from "@react-navigation/native";
 import { Text, View, Image } from "react-native";
 import CustomButton from "../components/CustomButton";
 import CustomInputSectionButton from "../components/CustomInputSectionButton";
@@ -20,6 +21,26 @@ const InputProgressScreen = ({navigation, route}) => {
   const [electricityState, changeElectricityState] = React.useState(false);
 
   let [loading, setLoading] = React.useState(false);
+
+  // if this is a recalculation, set sections to complete
+  const isFocused = useIsFocused()
+  React.useEffect(() => {
+    async function setStates() {
+      try {
+        if (route.params.prefilled == true) {
+          route.params.prefilled = false
+          changeLocationState(true)
+          changeSolarState(true)
+          changeElectricityState(true)
+        }
+      } catch (error) {
+        console.log("Prefilled assumed false")
+      }
+    }
+    return setStates()
+  }, [isFocused])
+
+  
 
   // If all sections are complete, make the API call, save the data and redirect to the results page
   const submitFunction = async () => {

@@ -53,13 +53,8 @@ const ResultsScreen = ({navigation, route}) => {
     // Update currentEstimate with the current selected one
     await storeObject('currentEstimate', data['estimate'])
 
-    // delete from saved results
-    let savedData = await getObject('savedEstimates')
-    savedData.splice(index, 1)
-    await storeObject('savedEstimates', savedData)
-
     // Go to the edit page to change the values
-    navigation.navigate('Calculate Estimate')
+    navigation.navigate('Calculate Estimate', {screen: 'ProgressScreen', params: {prefilled: true}})
   }
 
   // If loading, show the loading modal, otherwise load the main page content
