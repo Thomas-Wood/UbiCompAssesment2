@@ -1,7 +1,6 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import InputNavigationScreen from './screens/InputNavigationScreen';
 import Theme from "./Theme";
@@ -23,7 +22,7 @@ export default function App() {
           tabBarIcon: ({ focused, color }) => {
             let iconName;
             if (route.name === 'Calculate Estimate') {
-              return <AntDesign name='addfile' size={24} color={color} />
+              return <FontAwesome5 name='calculator' size={24} color={color} />
             } else if (route.name === 'History') {
               return <FontAwesome5 name='history' size={24} color={color} />
             }
