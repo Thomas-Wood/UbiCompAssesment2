@@ -113,7 +113,7 @@ const SolarSelectionScreen = ({navigation, route}) => {
             defaultValue={azimuth} 
             numeric={true} 
             stateChangeFunction={onChangeAzimuth} 
-            onPress={ () => showModal("This is the Azimuth, or the angle clockwise from true North\n\n180° is for a south-facing array\n0° degrees is for a north-facing array")}
+            onPress={ () => showModal("This is the Azimuth, or the angle clockwise from true North\n\n180° is for a south-facing array\n0° degrees is for a north-facing array\n\nIf you are in the northern hemisphere then south facing is best")}
           />
         </View>
       )
